@@ -143,7 +143,7 @@
 
 
 
-        /* Hero Section */
+/* Hero Section */
 .hero {
   text-align: center;
   padding: 6rem 0 4rem;
@@ -158,21 +158,26 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('../images/ux.jpg') center/cover no-repeat;
-  filter: blur(10px); /* blur ONLY the background */
+  background: url('../images/hd1.jpeg') center/cover no-repeat;
+  filter: blur(5px); /* reduced blur from 10px to 5px */
   z-index: -2; /* behind everything */
 }
 
-.hero::after {
+
+
+/* Optional: Keep the gradient overlay if you want both effects */
+ .hero::after {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at center, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
-  z-index: -1; /* overlay gradient */
-}
+  background: 
+    radial-gradient(circle at center, rgba(139, 92, 246, 0.1) 0%, transparent 70%),
+    rgba(0, 0, 0, 0.8); 
+  z-index: -1; 
+} 
 
 /* Hero text stays on top */
 .hero-content {
