@@ -589,9 +589,6 @@
 
         <div class="chat-messages">
             <div class="message bot-message">
-                <div class="message-avatar">
-                    <img src="images/ap.jpg" alt="Anesu Praise">
-                </div>
                 <div class="message-content">
                     <p>Hey there! 👋 I'm Anesu's Assistant🤖. How can I help you today?</p>
                     <span class="message-time">Just now</span>
@@ -940,9 +937,6 @@
             const time = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
             
             messageDiv.innerHTML = `
-                <div class="message-avatar">
-                    <img src="${sender === 'bot' ? 'images/ap.jpg' : 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIwIDIxVjE5QzIwIDE2Ljc5MDkgMTguMjA5MSAxNSAxNiAxNUg4QzUuNzkwODYgMTUgNCAxNi43OTA5IDQgMTlWMjEiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNMTIgMTFDMTQuMjA5MSAxMSAxNiA5LjIwOTEgMTYgN0MxNiA0Ljc5MDg2IDE0LjIwOTEgMyAxMiAzQzkuNzkwODYgMyA4IDQuNzkwODYgOCA3QzggOS4yMDkxIDkuNzkwODYgMTEgMTIgMTFaIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+'}" alt="${sender === 'bot' ? 'Anesu Praise' : 'User'}">
-                </div>
                 <div class="message-content">
                     <p>${text.replace(/\n/g, '<br>')}</p>
                     <span class="message-time">${time}</span>
@@ -1043,7 +1037,7 @@
             if (!chatContainer.classList.contains('active')) {
                 chatToggle.click();
             }
-        }, 5000);
+        }, 7000);
     });
 </script>
 
