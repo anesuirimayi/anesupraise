@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+        
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#8b5cf6">
@@ -171,882 +171,3279 @@
     <!-- Preload Critical Resources -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"></noscript>
-    <link rel="stylesheet" href="styles.css" type="text/css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Poppins:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Grape-themed dark palette - refined */
+            --color-1: #0c080d; /* Ultra-dark purple-black */
+            --color-2: #1a131f; /* Dark muted eggplant */
+            --color-3: #2d2235; /* Smoky purple-charcoal */
+            --color-4: #52425c; /* Dusty grape purple */
+            --color-5: #8a7096; /* Soft plum-lavender - brighter */
+            --color-accent: #a98bb5; /* Light accent */
+            
+            /* Additional colors you mentioned */
+            --color-black: #000000;
+            --color-dark-grey: #1e1e1e;
+            --color-cyan: #00f2fe;
+            --color-cyan-dark: #00d9e6;
+            
+            /* Spacing */
+            --container-padding: 2rem;
+            --section-spacing: 5rem;
+            
+            /* Typography */
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            font-weight: 300;
+            background-color: var(--color-1);
+            color: #f0f0f0;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+        
+        /* Floating Navigation Styles */
+        .floating-nav {
+            position: fixed;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.8rem;
+            z-index: 1000;
+            padding: 1.5rem 0.5rem;
+            border-radius: 50px;
+            background: transparent;
+        }
+        
+        .nav-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(42, 33, 50, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(138, 112, 150, 0.3);
+            color: var(--color-5);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-icon:hover {
+            transform: translateX(-10px) scale(1.1);
+            background: rgba(169, 139, 181, 0.2);
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+            box-shadow: 0 8px 20px rgba(169, 139, 181, 0.3);
+        }
+        
+        .nav-icon.active {
+            background: rgba(169, 139, 181, 0.25);
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+            transform: translateX(-10px);
+        }
+        
+        .nav-tooltip {
+            position: absolute;
+            right: 60px;
+            background: rgba(26, 19, 31, 0.9);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            border: 1px solid rgba(138, 112, 150, 0.2);
+        }
+        
+        .nav-icon:hover .nav-tooltip {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Settings Icon */
+        .settings-icon {
+            position: fixed;
+            left: 1.5rem;
+            top: 1.5rem;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(42, 33, 50, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(138, 112, 150, 0.3);
+            color: var(--color-5);
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 1001;
+            animation: spin 20s linear infinite;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .hero-text {
+            max-width: 600px;
+        }
+        
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #f0f0f0, var(--color-accent), var(--color-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--color-5);
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+        
+        .hero-description {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-bottom: 3rem;
+            max-width: 500px;
+            font-weight: 300;
+        }
+        
+        /* Unique CTA Button Design */
+        .cta-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 400px;
+        }
+        
+        .cta-button {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            border: none;
+        }
+        
+        .cta-primary {
+            background: linear-gradient(90deg, var(--color-cyan), var(--color-cyan-dark));
+            color: var(--color-black);
+            box-shadow: 0 5px 20px rgba(0, 242, 254, 0.3);
+        }
+        
+        .cta-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 242, 254, 0.5);
+        }
+        
+        .cta-secondary {
+            background: transparent;
+            color: var(--color-accent);
+            border: 1px solid var(--color-4);
+            backdrop-filter: blur(5px);
+        }
+        
+        .cta-secondary:hover {
+            background: rgba(169, 139, 181, 0.1);
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(169, 139, 181, 0.2);
+        }
+        
+        .cta-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .cta-button:hover .cta-icon {
+            transform: translateX(5px);
+        }
+        
+        .cta-decoration {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            top: -5px;
+            right: -5px;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        
+        .cta-button:hover .cta-decoration {
+            opacity: 1;
+            transform: scale(1.5);
+        }
+        
+        /* Image Collage */
+        .hero-images {
+            position: relative;
+            height: 500px;
+        }
+        
+        .image-collage {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .collage-img {
+            position: absolute;
+            border-radius: 15px;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.5s ease, z-index 0.3s ease;
+        }
+        
+        .collage-img:hover {
+            z-index: 10;
+            transform: scale(1.05);
+        }
+        
+        .img-1 {
+            width: 65%;
+            height: 60%;
+            top: 0;
+            right: 0;
+            z-index: 3;
+        }
+        
+        .img-2 {
+            width: 55%;
+            height: 50%;
+            bottom: 0;
+            left: 0;
+            z-index: 2;
+        }
+        
+        .img-3 {
+            width: 50%;
+            height: 45%;
+            top: 30%;
+            left: 25%;
+            z-index: 1;
+        }
+        
+        /* Water-like floating animation for nav icons */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-10px) translateX(5px);
+            }
+            50% {
+                transform: translateY(5px) translateX(-5px);
+            }
+            75% {
+                transform: translateY(-5px) translateX(10px);
+            }
+        }
+        
+        .floating-nav .nav-icon {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-nav .nav-icon:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        
+        .floating-nav .nav-icon:nth-child(3) {
+            animation-delay: 1s;
+        }
+        
+        .floating-nav .nav-icon:nth-child(4) {
+            animation-delay: 1.5s;
+        }
+        
+        .floating-nav .nav-icon:nth-child(5) {
+            animation-delay: 2s;
+        }
+        
+        .floating-nav .nav-icon:nth-child(6) {
+            animation-delay: 2.5s;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .hero-images {
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .floating-nav {
+                right: 0.8rem;
+                gap: 1.2rem;
+            }
+            
+            .nav-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+            
+            .settings-icon {
+                left: 1rem;
+                top: 1rem;
+                width: 40px;
+                height: 40px;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .cta-container {
+                max-width: 100%;
+            }
+            
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .floating-nav {
+                right: 0.5rem;
+                gap: 1rem;
+            }
+            
+            .nav-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 0.9rem;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-images {
+                height: 350px;
+            }
+            
+            .img-1, .img-2, .img-3 {
+                border-radius: 10px;
+            }
+        }
+        
+        /* For very small screens, adjust nav */
+        @media (max-width: 400px) {
+            .floating-nav {
+                right: 0.3rem;
+                gap: 0.8rem;
+            }
+            
+            .nav-icon {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .nav-tooltip {
+                display: none;
+            }
+        }
+    </style>
+
+<style>
+/* ===== Services Section Styles ===== */
+.section {
+    padding: 6rem 0;
+    position: relative;
+}
+
+#services {
+    background-color: var(--color-2);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    color: var(--color-5);
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 300;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.service-card {
+    background: rgba(45, 34, 53, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(138, 112, 150, 0.2);
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--color-accent);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.service-card.highlight {
+    border: 2px solid var(--color-cyan);
+    background: rgba(0, 242, 254, 0.05);
+}
+
+.service-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-3), var(--color-4));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: var(--color-accent);
+}
+
+.service-card.highlight .service-icon {
+    background: linear-gradient(135deg, var(--color-cyan), var(--color-cyan-dark));
+    color: var(--color-black);
+}
+
+.service-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #f0f0f0;
+}
+
+.service-description {
+    color: #ccc;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+.service-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin-bottom: 1.5rem;
+}
+
+.service-features span {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: #ddd;
+    font-size: 0.95rem;
+}
+
+.service-features i {
+    color: var(--color-accent);
+    font-size: 0.9rem;
+}
+
+.platform-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-cyan);
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 1rem;
+    padding: 0.7rem 1.2rem;
+    background: rgba(0, 242, 254, 0.1);
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+}
+
+.platform-link:hover {
+    background: rgba(0, 242, 254, 0.2);
+    transform: translateX(5px);
+}
+
+/* ===== Pricing Section Styles ===== */
+#pricing {
+    background-color: var(--color-1);
+}
+
+.pricing-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.pricing-card {
+    background: rgba(45, 34, 53, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(138, 112, 150, 0.2);
+    transition: all 0.4s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.pricing-card.basic {
+    border: 2px solid var(--color-accent);
+}
+
+.pricing-card.standard {
+    border: 1px solid rgba(138, 112, 150, 0.4);
+}
+
+.pricing-card.premium {
+    border: 1px solid rgba(0, 242, 254, 0.4);
+}
+
+.pricing-card.dynamic {
+    border: 2px solid var(--color-cyan);
+    background: rgba(0, 242, 254, 0.05);
+}
+
+.pricing-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, var(--color-cyan), var(--color-cyan-dark));
+    color: var(--color-black);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    z-index: 1;
+}
+
+.pricing-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(138, 112, 150, 0.2);
+}
+
+.pricing-title {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #f0f0f0;
+}
+
+.pricing-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.pricing-price .currency {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-accent);
+}
+
+.pricing-price .amount {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+}
+
+.pricing-price .period {
+    font-size: 1rem;
+    color: var(--color-5);
+}
+
+.pricing-range {
+    font-size: 0.95rem;
+    color: var(--color-5);
+    font-style: italic;
+}
+
+.pricing-features {
+    flex-grow: 1;
+    margin-bottom: 2rem;
+}
+
+.pricing-features h4 {
+    font-size: 1.1rem;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+}
+
+.pricing-features h4:first-child {
+    margin-top: 0;
+}
+
+.pricing-features ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.pricing-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    color: #ddd;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.pricing-features i {
+    color: var(--color-accent);
+    font-size: 0.9rem;
+    margin-top: 0.2rem;
+}
+
+.pricing-notes {
+    margin-top: 1rem;
+}
+
+.pricing-notes i {
+    color: var(--color-5);
+}
+
+.all-inclusive i {
+    color: var(--color-cyan);
+}
+
+.highlight-note {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-cyan);
+    margin-top: 1.5rem;
+    font-size: 1rem;
+}
+
+.pricing-cta {
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    border: none;
+    margin-top: auto;
+    background: linear-gradient(90deg, var(--color-4), var(--color-5));
+    color: white;
+}
+
+.pricing-card.basic .pricing-cta {
+    background: linear-gradient(90deg, var(--color-accent), #b89ac5);
+}
+
+.pricing-card.dynamic .pricing-cta {
+    background: linear-gradient(90deg, var(--color-cyan), var(--color-cyan-dark));
+    color: var(--color-black);
+}
+
+.pricing-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(138, 112, 150, 0.4);
+}
+
+.pricing-card.dynamic .pricing-cta:hover {
+    box-shadow: 0 8px 20px rgba(0, 242, 254, 0.4);
+}
+
+.pricing-footer {
+    margin-top: 4rem;
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(138, 112, 150, 0.2);
+}
+
+.seo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    background: rgba(169, 139, 181, 0.1);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(169, 139, 181, 0.3);
+}
+
+.seo-badge i {
+    color: var(--color-accent);
+}
+
+.seo-badge span {
+    font-weight: 600;
+    color: #f0f0f0;
+}
+
+.pricing-disclaimer {
+    color: var(--color-5);
+    font-size: 0.95rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+/* Responsive adjustments for services/pricing */
+@media (max-width: 1200px) {
+    .pricing-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2.3rem;
+    }
     
+    .services-grid,
+    .pricing-container {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .pricing-price .amount {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .section {
+        padding: 4rem 0;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .service-card,
+    .pricing-card {
+        padding: 1.5rem;
+    }
+}
+</style>
+
+<style>
+/* ===== All Websites Section Styles ===== */
+#work {
+    background-color: var(--color-2);
+    position: relative;
+    overflow: hidden;
+}
+
+.websites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.website-card {
+    background: rgba(45, 34, 53, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(138, 112, 150, 0.2);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.website-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--color-accent);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.website-hover-effect {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(169, 139, 181, 0.1) 0%, rgba(169, 139, 181, 0) 70%);
+    top: -30px;
+    right: -30px;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.website-card:hover .website-hover-effect {
+    opacity: 1;
+    transform: scale(1.5);
+}
+
+.website-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-3), var(--color-4));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: var(--color-accent);
+}
+
+.website-content {
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+}
+
+.website-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #f0f0f0;
+}
+
+.website-url {
+    color: var(--color-5);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    font-family: monospace;
+    word-break: break-all;
+}
+
+.website-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.website-tag {
+    background: rgba(138, 112, 150, 0.2);
+    color: var(--color-5);
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid rgba(138, 112, 150, 0.3);
+}
+
+.website-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    background: linear-gradient(90deg, var(--color-4), var(--color-5));
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.4s ease;
+    align-self: flex-start;
+    margin-top: auto;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+}
+
+.website-cta:hover {
+    background: linear-gradient(90deg, var(--color-accent), #b89ac5);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(138, 112, 150, 0.4);
+}
+
+.websites-footer {
+    margin-top: 4rem;
+    text-align: center;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(138, 112, 150, 0.2);
+}
+
+.view-all-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: transparent;
+    color: var(--color-cyan);
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color-cyan);
+    margin-bottom: 1.5rem;
+}
+
+.view-all-button:hover {
+    background: rgba(0, 242, 254, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 242, 254, 0.2);
+    padding-right: 3rem;
+}
+
+.button-arrow {
+    display: flex;
+    gap: 0.5rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.view-all-button:hover .button-arrow {
+    transform: translateX(10px);
+}
+
+.button-arrow i:first-child {
+    opacity: 0.7;
+}
+
+.button-arrow i:last-child {
+    position: absolute;
+    left: 20px;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.view-all-button:hover .button-arrow i:last-child {
+    opacity: 1;
+    left: 30px;
+}
+
+.button-dots {
+    position: absolute;
+    right: 30px;
+    display: flex;
+    gap: 3px;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.view-all-button:hover .button-dots {
+    opacity: 1;
+    right: 20px;
+}
+
+.button-dots span {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-cyan);
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.button-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.button-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+.websites-note {
+    color: var(--color-5);
+    font-size: 0.95rem;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+/* Responsive adjustments for websites section */
+@media (max-width: 768px) {
+    .websites-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .view-all-button {
+        padding: 0.9rem 2rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .website-card {
+        padding: 1.5rem;
+    }
+    
+    .website-title {
+        font-size: 1.3rem;
+    }
+    
+    .view-all-button {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1rem 1.5rem;
+    }
+    
+    .view-all-button:hover {
+        padding-right: 1.5rem;
+    }
+    
+    .button-arrow {
+        margin-top: 0.5rem;
+    }
+}
+</style>
+
+<style>
+/* ===== Contact & About Section Styles ===== */
+#contact {
+    background-color: var(--color-1);
+    position: relative;
+}
+
+.contact-about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 3rem;
+    align-items: start;
+}
+
+/* Contact Form Styles */
+.contact-form-container {
+    background: rgba(45, 34, 53, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2.5rem;
+    border: 1px solid rgba(138, 112, 150, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.contact-form {
+    margin-bottom: 2.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.8rem;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.7rem;
+    color: #f0f0f0;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    background: rgba(26, 19, 31, 0.8);
+    border: 1px solid rgba(138, 112, 150, 0.3);
+    border-radius: 10px;
+    color: #f0f0f0;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(169, 139, 181, 0.2);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--color-5);
+    opacity: 0.7;
+}
+
+.form-group select {
+    appearance: none;
+    cursor: pointer;
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    top: 2.7rem;
+    color: var(--color-5);
+    font-size: 1rem;
+    pointer-events: none;
+}
+
+.textarea-icon {
+    top: 2.5rem;
+}
+
+.phone-option {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(26, 19, 31, 0.5);
+    border-radius: 10px;
+    border: 1px solid rgba(138, 112, 150, 0.2);
+}
+
+.option-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #ddd;
+    font-size: 0.95rem;
+}
+
+.option-label input[type="checkbox"] {
+    display: none;
+}
+
+.checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color-5);
+    border-radius: 4px;
+    margin-right: 0.8rem;
+    position: relative;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 5px;
+    top: 1px;
+    width: 6px;
+    height: 10px;
+    border: solid var(--color-accent);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.option-label input:checked ~ .checkmark {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+.option-label input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.option-text {
+    line-height: 1.4;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 1.2rem 2rem;
+    background: linear-gradient(90deg, var(--color-cyan), var(--color-cyan-dark));
+    color: var(--color-black);
+    border: none;
+    border-radius: 50px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    position: relative;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.submit-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 242, 254, 0.4);
+}
+
+.submit-button:active {
+    transform: translateY(-2px);
+}
+
+.submit-effect {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    top: 0;
+    left: -100%;
+    transition: left 0.7s ease;
+}
+
+.submit-button:hover .submit-effect {
+    left: 100%;
+}
+
+.form-note {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--color-5);
+    font-size: 0.9rem;
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(138, 112, 150, 0.2);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contact-item i {
+    font-size: 1.5rem;
+    color: var(--color-accent);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(169, 139, 181, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-item h4 {
+    font-size: 1rem;
+    color: #f0f0f0;
+    margin-bottom: 0.3rem;
+}
+
+.contact-item p {
+    color: var(--color-5);
+    font-size: 0.9rem;
+}
+
+/* About Me Styles */
+.about-card {
+    background: rgba(45, 34, 53, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(138, 112, 150, 0.2);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    height: 100%;
+}
+
+.about-image-container {
+    position: relative;
+    height: 350px;
+    overflow: hidden;
+}
+
+.image-frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.about-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    transition: transform 0.5s ease;
+}
+
+.about-card:hover .about-image {
+    transform: scale(1.05);
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 60%, rgba(12, 8, 13, 0.9));
+}
+
+.image-badge {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    background: rgba(169, 139, 181, 0.9);
+    backdrop-filter: blur(5px);
+    padding: 0.7rem 1.2rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--color-black);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.image-badge i {
+    font-size: 1rem;
+}
+
+.about-content {
+    padding: 2.5rem;
+}
+
+.about-title {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #f0f0f0;
+}
+
+.about-text {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+}
+
+.about-stats {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 0;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(138, 112, 150, 0.2);
+    border-bottom: 1px solid rgba(138, 112, 150, 0.2);
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.stat-number {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--color-5);
+    font-weight: 500;
+}
+
+.about-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 2rem;
+}
+
+.about-tag {
+    background: rgba(138, 112, 150, 0.2);
+    color: var(--color-5);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid rgba(138, 112, 150, 0.3);
+    transition: all 0.3s ease;
+}
+
+.about-tag:hover {
+    background: rgba(169, 139, 181, 0.3);
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+}
+
+/* Mobile Reordering */
+@media (max-width: 992px) {
+    .contact-about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .about-container {
+        order: -1; /* About appears first on mobile */
+    }
+    
+    .contact-form-container {
+        order: 1; /* Contact appears second on mobile */
+    }
+    
+    .about-image-container {
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-about-grid {
+        gap: 2.5rem;
+    }
+    
+    .contact-form-container,
+    .about-content {
+        padding: 2rem;
+    }
+    
+    .contact-info {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+    
+    .about-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .stat {
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .stat-number {
+        margin-bottom: 0;
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .contact-form-container,
+    .about-content {
+        padding: 1.5rem;
+    }
+    
+    .about-image-container {
+        height: 250px;
+    }
+    
+    .about-title {
+        font-size: 1.5rem;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 0.9rem 0.9rem 0.9rem 2.8rem;
+    }
+    
+    .input-icon {
+        top: 2.5rem;
+        left: 0.9rem;
+    }
+}
+
+/* Form Success/Error Messages */
+.form-message {
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 1.5rem;
+    text-align: center;
+    display: none;
+}
+
+.form-message.success {
+    background: rgba(0, 200, 83, 0.1);
+    border: 1px solid rgba(0, 200, 83, 0.3);
+    color: #4caf50;
+}
+
+.form-message.error {
+    background: rgba(244, 67, 54, 0.1);
+    border: 1px solid rgba(244, 67, 54, 0.3);
+    color: #f44336;
+}
 
 
 
+
+
+/* ===== Footer Styles ===== */
+.footer {
+    background-color: var(--color-2);
+    padding: 3rem 0 2rem;
+    border-top: 1px solid rgba(138, 112, 150, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.copyright {
+    color: var(--color-5);
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+.footer-tagline {
+    color: var(--color-accent);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.footer-right {
+    display: flex;
+    align-items: center;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(45, 34, 53, 0.7);
+    border: 1px solid rgba(138, 112, 150, 0.3);
+    color: var(--color-5);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-link:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-3), var(--color-4));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.social-link svg {
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-accent);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.social-link:hover:before {
+    opacity: 1;
+}
+
+.social-link:hover svg {
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Specific social link colors on hover */
+.social-link:nth-child(1):hover { /* WhatsApp */
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    border-color: #25D366;
+}
+
+.social-link:nth-child(2):hover { /* GitHub */
+    background: linear-gradient(135deg, #333, #6e5494);
+    border-color: #6e5494;
+}
+
+.social-link:nth-child(3):hover { /* Email */
+    background: linear-gradient(135deg, #EA4335, #4285F4);
+    border-color: #EA4335;
+}
+
+.social-link:nth-child(4):hover { /* X.com */
+    background: linear-gradient(135deg, #000000, #1DA1F2);
+    border-color: #000000;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(138, 112, 150, 0.1);
+}
+
+.footer-quote {
+    color: var(--color-5);
+    font-size: 0.9rem;
+    font-style: italic;
+    letter-spacing: 0.3px;
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+    .footer {
+        padding: 2.5rem 0 1.5rem;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+    
+    .footer-left {
+        align-items: center;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .social-links {
+        gap: 1rem;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .social-link svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .copyright {
+        font-size: 0.9rem;
+    }
+    
+    .footer-tagline {
+        font-size: 0.95rem;
+    }
+}
+
+/* Animation for floating effect on social links */
+@keyframes float-gentle {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+.social-link {
+    animation: float-gentle 4s ease-in-out infinite;
+}
+
+.social-link:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.social-link:nth-child(3) {
+    animation-delay: 1s;
+}
+
+.social-link:nth-child(4) {
+    animation-delay: 1.5s;
+}
+
+
+/* ===== Contact Modal Styles ===== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(12, 8, 13, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-container {
+    background: linear-gradient(135deg, var(--color-1), var(--color-2));
+    border-radius: 20px;
+    width: 100%;
+    max-width: 500px;
+    max-height: 85vh;
+    border: 1px solid rgba(138, 112, 150, 0.3);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    transform: translateY(30px);
+    opacity: 0;
+    transition: all 0.5s ease 0.1s;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-overlay.active .modal-container {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.8rem 2rem;
+    border-bottom: 1px solid rgba(138, 112, 150, 0.2);
+    background: rgba(45, 34, 53, 0.5);
+    flex-shrink: 0;
+}
+
+.modal-title {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #f0f0f0;
+    margin: 0;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.modal-close {
+    background: rgba(138, 112, 150, 0.2);
+    border: 1px solid rgba(138, 112, 150, 0.3);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-5);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: rgba(169, 139, 181, 0.3);
+    color: var(--color-accent);
+    transform: rotate(90deg);
+    border-color: var(--color-accent);
+}
+
+.modal-body {
+    padding: 2rem;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.modal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: rgba(138, 112, 150, 0.1);
+    border-radius: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: rgba(169, 139, 181, 0.5);
+    border-radius: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(169, 139, 181, 0.7);
+}
+
+.modal-subtitle {
+    color: var(--color-5);
+    margin-bottom: 1.8rem;
+    line-height: 1.5;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.modal-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+}
+
+.modal-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.modal-form label {
+    display: block;
+    margin-bottom: 0.6rem;
+    color: #f0f0f0;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.modal-form input,
+.modal-form select,
+.modal-form textarea {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    background: rgba(26, 19, 31, 0.8);
+    border: 1px solid rgba(138, 112, 150, 0.3);
+    border-radius: 10px;
+    color: #f0f0f0;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.modal-form input:focus,
+.modal-form select:focus,
+.modal-form textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(169, 139, 181, 0.2);
+}
+
+.modal-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.modal-form input::placeholder,
+.modal-form textarea::placeholder {
+    color: var(--color-5);
+    opacity: 0.7;
+}
+
+.modal-form select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%238a7096' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 12px;
+    padding-right: 2.5rem;
+    cursor: pointer;
+}
+
+.form-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+    padding: 1.2rem;
+    background: rgba(26, 19, 31, 0.5);
+    border-radius: 10px;
+    border: 1px solid rgba(138, 112, 150, 0.2);
+}
+
+.option-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #ddd;
+    font-size: 0.9rem;
+    user-select: none;
+}
+
+.option-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.checkbox-custom {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--color-5);
+    border-radius: 4px;
+    margin-right: 0.8rem;
+    position: relative;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.checkbox-custom:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 4px;
+    top: 0;
+    width: 5px;
+    height: 9px;
+    border: solid var(--color-accent);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.option-checkbox input:checked ~ .checkbox-custom {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+.option-checkbox input:checked ~ .checkbox-custom:after {
+    display: block;
+}
+
+.option-text {
+    line-height: 1.4;
+}
+
+.modal-submit-btn {
+    width: 100%;
+    padding: 1.1rem 2rem;
+    background: linear-gradient(90deg, var(--color-cyan), var(--color-cyan-dark));
+    color: var(--color-black);
+    border: none;
+    border-radius: 50px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.modal-submit-btn:hover:not(.loading) {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 242, 254, 0.4);
+}
+
+.modal-submit-btn.loading {
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+.submit-loader {
+    display: none;
+    align-items: center;
+    gap: 4px;
+}
+
+.loader-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-black);
+    animation: pulse-dots 1.4s ease-in-out infinite both;
+}
+
+.loader-dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.loader-dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes pulse-dots {
+    0%, 80%, 100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+    40% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+.modal-submit-btn.loading span {
+    display: none;
+}
+
+.modal-submit-btn.loading .submit-loader {
+    display: flex;
+}
+
+.modal-note {
+    text-align: center;
+    margin-top: 1.2rem;
+    color: var(--color-5);
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.modal-note a {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+.modal-note a:hover {
+    text-decoration: underline;
+}
+
+.modal-footer {
+    padding: 1.5rem 2rem;
+    border-top: 1px solid rgba(138, 112, 150, 0.2);
+    background: rgba(45, 34, 53, 0.5);
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.modal-contact-alt {
+    color: var(--color-5);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+}
+
+.modal-contact-alt i {
+    color: var(--color-accent);
+    font-size: 1rem;
+}
+
+.modal-contact-alt a {
+    color: var(--color-cyan);
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 0.3rem;
+}
+
+.modal-contact-alt a:hover {
+    text-decoration: underline;
+}
+
+/* Success message */
+.modal-success {
+    display: none;
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.modal-success i {
+    font-size: 3.5rem;
+    color: var(--color-cyan);
+    margin-bottom: 1.5rem;
+}
+
+.modal-success h4 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: #f0f0f0;
+    margin-bottom: 1rem;
+}
+
+.modal-success p {
+    color: var(--color-5);
+    line-height: 1.5;
+    margin-bottom: 2rem;
+}
+
+.modal-success .success-btn {
+    background: transparent;
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-success .success-btn:hover {
+    background: rgba(169, 139, 181, 0.1);
+}
+
+/* Responsive modal */
+@media (max-width: 576px) {
+    .modal-container {
+        max-width: 100%;
+        max-height: 90vh;
+    }
+    
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: 1.5rem;
+    }
+    
+    .modal-form .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .modal-title {
+        font-size: 1.5rem;
+    }
+    
+    .modal-body {
+        max-height: calc(90vh - 120px);
+    }
+}
+</style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <img src="images/anesu-praise-web-designer.jpg" alt="Anesu Praise Web Designer"> 
-            <h2 class="logo-text">Anesu Praise</h2>          
-        </div>
-         
-        <nav>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="sites/">All Sites</a></li>
-            <li><a href="#about">About</a></li>        
-            <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="hamburger">
-            <div class="hamburger-line"></div>
-            <div class="hamburger-line"></div>
-            <div class="hamburger-line"></div>
-        </div>
-    </header>
-
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav">
-        <ul class="mobile-nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="sites/">All Sites</a></li>
-            <li><a href="#about">About</a></li>        
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+    <!-- Settings Icon -->
+    <div class="settings-icon">
+        <i class="fas fa-cog"></i>
     </div>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="bg-elements">
-            <div class="bg-element bg-element-1"></div>
-            <div class="bg-element bg-element-2"></div>
+    
+    <!-- Floating Navigation -->
+    <nav class="floating-nav">
+        <div class="nav-icon active" data-target="hero">
+            <i class="fas fa-home"></i>
+            <span class="nav-tooltip">Home</span>
         </div>
-        
-        <div class="hero-content">
-            <div class="hero-text">
-                 <h1>Creative Web Designer</h1>
-            <p>Frontend Developer crafting immersive digital experiences with clean code and innovative design. Specializing in responsive interfaces and modern web technologies.</p>
-                <div class="hero-buttons">
-          <a href="#contact">          <button class="btn btn-primary">Contact Me</button> </a>
-          <a href="#projects">          <button class="btn btn-secondary">View Projects</button> </a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="code-container">
-                    <div class="code-header">
-                        <div class="code-dots">
-                            <div class="dot dot-red"></div>
-                            <div class="dot dot-yellow"></div>
-                            <div class="dot dot-green"></div>
-                        </div>
+        <div class="nav-icon" data-target="services">
+            <i class="fas fa-code"></i>
+            <span class="nav-tooltip">Services</span>
+        </div>
+        <div class="nav-icon" data-target="pricing">
+            <i class="fas fa-tags"></i>
+            <span class="nav-tooltip">Pricing</span>
+        </div>
+        <div class="nav-icon" data-target="work">
+            <i class="fas fa-globe"></i>
+            <span class="nav-tooltip">All Websites</span>
+        </div>
+        <div class="nav-icon" data-target="contact">
+            <i class="fas fa-envelope"></i>
+            <span class="nav-tooltip">Contact</span>
+        </div>
+        <div class="nav-icon" data-target="whatsapp">
+            <i class="fab fa-whatsapp"></i>
+            <span class="nav-tooltip">WhatsApp</span>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Anesu Praise</h1>
+                    <h2 class="hero-subtitle">Web Designer & Developer</h2>
+                    <p class="hero-description">
+                        Creating modern, app-like web experiences with unique interactions and cutting-edge design. 
+                        I blend aesthetics with functionality to build digital solutions that stand out.
+                    </p>
+                    
+                    <div class="cta-container">
+                        <button class="cta-button cta-primary">
+                            <span>Start a Project</span>
+                            <i class="fas fa-arrow-right cta-icon"></i>
+                            <span class="cta-decoration"></span>
+                        </button>
+                        
+                        <button class="cta-button cta-secondary">
+                            <span>Explore My Work</span>
+                            <i class="fas fa-chevron-down cta-icon"></i>
+                            <span class="cta-decoration"></span>
+                        </button>
                     </div>
-                    <div class="code-content">
-                        <div class="code-line"><span class="code-keyword">const</span> <span class="code-function">developer</span> = {</div>
-                        <div class="code-line">&nbsp;&nbsp;name: <span class="code-string">"Anesu Praise"</span>,</div>
-                        <div class="code-line">&nbsp;&nbsp;role: <span class="code-string">"Frontend Developer"</span>,</div>
-                        <div class="code-line">&nbsp;&nbsp;skills: [<span class="code-string">"JavaScript"</span>, <span class="code-string">"HTML5"</span>, <span class="code-string">"CSS3"</span>],</div>
-                        <div class="code-line">&nbsp;&nbsp;passion: <span class="code-string">"Creating unique web experiences"</span></div>
-                        <div class="code-line">};</div>
-                        <div class="code-line"><span class="code-comment">// Always learning, always coding</span></div>
-                    </div>
                 </div>
-                <div class="floating-elements">
-                    <div class="floating-element"></div>
-                    <div class="floating-element"></div>
-                    <div class="floating-element"></div>
+                
+                <div class="hero-images">
+                    <div class="image-collage">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Web Development" class="collage-img img-1">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Coding" class="collage-img img-2">
+                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="UI/UX Design" class="collage-img img-3">
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
-
-
-
-
-
-
-<!-- Projects Section -->
-<section class="projects" id="projects">
+    
+<!-- Services Section -->
+<section id="services" class="section">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">Live Projects</h2>
-            <p class="section-subtitle">Real websites I've built for clients</p>
+            <h2 class="section-title">Design & Development Services</h2>
+            <p class="section-subtitle">Crafting digital experiences that perform across all devices</p>
         </div>
         
-        <div class="projects-grid">
-            <!-- Project 1 -->
-            <div class="project-card">
-                <div class="project-media">
-                    <div class="project-image">
-                        <img src="images/gf.png" alt="Goldbourne Finance Website">
-                    </div>
-                    <div class="project-video">
-                        <video muted loop playsinline>
-                            <source src="images/goldbourne.mp4" type="video/mp4">
-                        </video>
-                    </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-laptop-code"></i>
                 </div>
-                <div class="project-content">
-                    <h3 class="project-title">Goldbourne Finance</h3>
-                    <p class="project-description">A modern website for Goldbourne Finance, a registered microfinance company in Zimbabwe, licensed by the Reserve Bank of Zimbabwe.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">JS</span>
-                        <span class="tech-tag">CSS</span>
-                    </div>
-                    <a href="https://goldbourne-finance.com/" class="project-link">
-                        <span>Visit Site</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </a>
+                <h3 class="service-title">Responsive Web Design</h3>
+                <p class="service-description">Beautiful, mobile-optimized websites that work flawlessly on phones, tablets, and desktops.</p>
+                <div class="service-features">
+                    <span><i class="fas fa-check"></i> Mobile-first approach</span>
+                    <span><i class="fas fa-check"></i> Cross-browser compatibility</span>
+                    <span><i class="fas fa-check"></i> Performance optimized</span>
                 </div>
             </div>
             
-            <!-- Project 2 -->
-            <div class="project-card">
-                <div class="project-media">
-                    <div class="project-image">
-                        <img src="images/pas.jpg" alt="Pexus Advisory Services Website">
-                    </div>
-                    <div class="project-video">
-                        <video muted loop playsinline>
-                            <source src="images/pexus.mp4" type="video/mp4">
-                        </video>
-                    </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-rocket"></i>
                 </div>
-                <div class="project-content">
-                    <h3 class="project-title">Pexus Advisory Services</h3>
-                    <p class="project-description">A professional informative website for PAS, Zambian-based Educational consultancy committed to delivering tailored Educational support services to students who aspire to Study abroad.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">JS</span>
-                    </div>
-                    <a href="https://www.pexusadvisoryservices.co.za/" class="project-link">
-                        <span>Visit Site</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </a>
+                <h3 class="service-title">Web Applications</h3>
+                <p class="service-description">Dynamic, interactive web apps with modern functionality and real-time features.</p>
+                <div class="service-features">
+                    <span><i class="fas fa-check"></i> Interactive user interfaces</span>
+                    <span><i class="fas fa-check"></i> Database integration</span>
+                    <span><i class="fas fa-check"></i> API connections</span>
                 </div>
             </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-paint-roller"></i>
+                </div>
+                <h3 class="service-title">Website Redesign</h3>
+                <p class="service-description">Breathing new life into existing websites with modern design and improved user experience.</p>
+                <div class="service-features">
+                    <span><i class="fas fa-check"></i> UI/UX improvement</span>
+                    <span><i class="fas fa-check"></i> Modern aesthetics</span>
+                    <span><i class="fas fa-check"></i> Content restructuring</span>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3 class="service-title">SEO Optimization</h3>
+                <p class="service-description">All websites I build are optimized for search engines right from the start for maximum visibility.</p>
+                <div class="service-features">
+                    <span><i class="fas fa-check"></i> Technical SEO</span>
+                    <span><i class="fas fa-check"></i> Meta optimization</span>
+                    <span><i class="fas fa-check"></i> Speed optimization</span>
+                </div>
+            </div>
+            
+            <div class="service-card highlight">
+                <div class="service-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3 class="service-title">Portfolio Platform</h3>
+                <p class="service-description">Check out my live portfolio platform showcasing various projects and capabilities.</p>
+                <div class="service-features">
+                    <span><i class="fas fa-check"></i> Real-world examples</span>
+                    <span><i class="fas fa-check"></i> Case studies</span>
+                    <span><i class="fas fa-check"></i> Client testimonials</span>
+                </div>
+                <a href="https://to-linka.com" target="_blank" class="platform-link">
+                    Visit to-linka.com <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
         </div>
-
-    <div class="view-all-container">
-    <a href="sites/" class="view-all-btn">
-        <span>View All Websites I've Built</span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-    </a>
-</div>
-
     </div>
 </section>
 
-
-
-
-
-
-
-<!-- Skills Section -->
-<section class="skills" id="skills">
+<!-- Pricing Section -->
+<section id="pricing" class="section">
     <div class="container">
-        <div class="skills-content">
-            <div class="skills-info">
-                <div class="section-header">
-                    <h2 class="section-title">Skills & Expertise</h2>
-                    <p class="section-subtitle">Crafting digital experiences with precision and passion</p>
-                </div>
-                
-                <div class="skills-list">
-                    <!-- HTML Skill -->
-                    <div class="skill-item" data-skill="html">
-                        <div class="skill-header">
-                            <h3 class="skill-name">HTML5</h3>
-                            <span class="skill-percentage">90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- CSS Skill -->
-                    <div class="skill-item" data-skill="css">
-                        <div class="skill-header">
-                            <h3 class="skill-name">CSS3</h3>
-                            <span class="skill-percentage">87%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 87%"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- JavaScript Skill -->
-                    <div class="skill-item" data-skill="javascript">
-                        <div class="skill-header">
-                            <h3 class="skill-name">JavaScript</h3>
-                            <span class="skill-percentage">85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- UI/UX Skill -->
-                    <div class="skill-item" data-skill="uiux">
-                        <div class="skill-header">
-                            <h3 class="skill-name">UI/UX Design</h3>
-                            <span class="skill-percentage">95%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 95%"></div>
-                        </div>
+        <div class="section-header">
+            <h2 class="section-title">Transparent Pricing</h2>
+            <p class="section-subtitle">Simple, clear pricing with no hidden fees. All packages include SEO optimization.</p>
+        </div>
+        
+        <div class="pricing-container">
+            <!-- SENA Package -->
+            <div class="pricing-card basic">
+                <div class="pricing-badge">Most Popular</div>
+                <div class="pricing-header">
+                    <h3 class="pricing-title">SENA Package</h3>
+                    <div class="pricing-price">
+                        <span class="currency">$</span>
+                        <span class="amount">30</span>
+                        <span class="period">/ one-time</span>
                     </div>
                 </div>
                 
-                <div class="skills-description">
-                    <p>I have an obsession for aesthetic perfection and creating uniquely beautiful digital experiences. Every pixel matters, every interaction counts. I believe that exceptional user experience is not just a feature - it's the foundation of every successful digital product.</p>
+                <div class="pricing-features">
+                    <h4>What's included:</h4>
+                    <ul>
+                        <li><i class="fas fa-check"></i> 1-page static landing page</li>
+                        <li><i class="fas fa-check"></i> Fully responsive design</li>
+                        <li><i class="fas fa-check"></i> Mobile optimized</li>
+                        <li><i class="fas fa-check"></i> SEO optimization included</li>
+                        <li><i class="fas fa-check"></i> Basic contact form</li>
+                    </ul>
+                    
+                    <h4>Notes:</h4>
+                    <ul class="pricing-notes">
+                        <li><i class="fas fa-info-circle"></i> Domain name not included</li>
+                        <li><i class="fas fa-info-circle"></i> Client purchases domain separately</li>
+                        <li><i class="fas fa-info-circle"></i> Hosting on GitHub Pages (code public)</li>
+                    </ul>
                 </div>
+                
+                <button class="pricing-cta">Choose SENA</button>
             </div>
             
-            <div class="skills-visual">
-                <div class="skill-image-container">
-                    <div class="skill-image-border">
-                        <div class="rotating-border"></div>
+            <!-- Multi-page Package -->
+            <div class="pricing-card standard">
+                <div class="pricing-header">
+                    <h3 class="pricing-title">Multi-Page Website</h3>
+                    <div class="pricing-price">
+                        <span class="currency">$</span>
+                        <span class="amount">45</span>
+                        <span class="period">/ one-time</span>
                     </div>
-                    <div class="skill-image">
-                        <img id="skill-img" src="images/languages.webp" alt="Skills">
-                    </div>
-                </div> 
+                    <p class="pricing-range">2-4 pages</p>
+                </div>
+                
+                <div class="pricing-features">
+                    <h4>What's included:</h4>
+                    <ul>
+                        <li><i class="fas fa-check"></i> 2-4 page responsive website</li>
+                        <li><i class="fas fa-check"></i> Consistent design across pages</li>
+                        <li><i class="fas fa-check"></i> Mobile optimized</li>
+                        <li><i class="fas fa-check"></i> Advanced SEO optimization</li>
+                        <li><i class="fas fa-check"></i> Contact form + 1 additional form</li>
+                        <li><i class="fas fa-check"></i> Social media integration</li>
+                    </ul>
+                    
+                    <h4>Notes:</h4>
+                    <ul class="pricing-notes">
+                        <li><i class="fas fa-info-circle"></i> Domain name not included</li>
+                        <li><i class="fas fa-check"></i> Free setup assistance</li>
+                        <li><i class="fas fa-info-circle"></i> Hosting on GitHub Pages</li>
+                    </ul>
+                </div>
+                
+                <button class="pricing-cta">Choose Multi-Page</button>
+            </div>
             
-<p>&nbsp</p>
-
-                            <div class="ad-placeholder">
-  <span class="ad-label">Ad placeholder – demo only</span>
-  <h4>Upgrade Your Web Skills!</h4>
-  <p>Check out our amazing coding resources.</p>
-</div>
-
-</div>
-
-
-
+            <!-- Complex/Extended Package -->
+            <div class="pricing-card premium">
+                <div class="pricing-header">
+                    <h3 class="pricing-title">Extended Website</h3>
+                    <div class="pricing-price">
+                        <span class="currency">$</span>
+                        <span class="amount">60</span>
+                        <span class="period">+</span>
+                    </div>
+                    <p class="pricing-range">5+ pages (price scales with complexity)</p>
+                </div>
+                
+                <div class="pricing-features">
+                    <h4>What's included:</h4>
+                    <ul>
+                        <li><i class="fas fa-check"></i> 5+ page comprehensive website</li>
+                        <li><i class="fas fa-check"></i> Complex layouts & interactions</li>
+                        <li><i class="fas fa-check"></i> Priority mobile optimization</li>
+                        <li><i class="fas fa-check"></i> Comprehensive SEO package</li>
+                        <li><i class="fas fa-check"></i> Multiple forms & integrations</li>
+                        <li><i class="fas fa-check"></i> Advanced animations</li>
+                    </ul>
+                    
+                    <h4>Notes:</h4>
+                    <ul class="pricing-notes">
+                        <li><i class="fas fa-info-circle"></i> Domain name not included</li>
+                        <li><i class="fas fa-check"></i> Free consultation included</li>
+                        <li><i class="fas fa-info-circle"></i> Custom hosting recommendations</li>
+                    </ul>
+                </div>
+                
+                <button class="pricing-cta">Get Custom Quote</button>
+            </div>
+            
+            <!-- Dynamic Websites -->
+            <div class="pricing-card dynamic">
+                <div class="pricing-badge">Premium</div>
+                <div class="pricing-header">
+                    <h3 class="pricing-title">Dynamic Websites</h3>
+                    <div class="pricing-price">
+                        <span class="currency">$</span>
+                        <span class="amount">200</span>
+                        <span class="period">+</span>
+                    </div>
+                    <p class="pricing-range">E-commerce, web apps, databases</p>
+                </div>
+                
+                <div class="pricing-features">
+                    <h4>What's included:</h4>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Full dynamic website/web app</li>
+                        <li><i class="fas fa-check"></i> Database integration</li>
+                        <li><i class="fas fa-check"></i> User authentication system</li>
+                        <li><i class="fas fa-check"></i> E-commerce functionality</li>
+                        <li><i class="fas fa-check"></i> Admin dashboard</li>
+                        <li><i class="fas fa-check"></i> Advanced SEO & analytics</li>
+                    </ul>
+                    
+                    <h4 class="highlight-note"><i class="fas fa-star"></i> All-inclusive package:</h4>
+                    <ul class="pricing-notes all-inclusive">
+                        <li><i class="fas fa-check-circle"></i> Domain name INCLUDED</li>
+                        <li><i class="fas fa-check-circle"></i> Web hosting INCLUDED</li>
+                        <li><i class="fas fa-check-circle"></i> SSL certificate INCLUDED</li>
+                        <li><i class="fas fa-check-circle"></i> Maintenance (first 3 months)</li>
+                    </ul>
+                </div>
+                
+                <button class="pricing-cta">Discuss Project</button>
+            </div>
+        </div>
+        
+        <div class="pricing-footer">
+            <div class="seo-badge">
+                <i class="fas fa-search"></i>
+                <span>All packages include SEO optimization by default</span>
+            </div>
+            <p class="pricing-disclaimer">Note: Static site packages don't include domain names. Dynamic sites include domain & hosting for first year. Prices are in USD.</p>
         </div>
     </div>
 </section>
 
-
-
-
-<!-- About Section -->
-<section class="about" id="about">
+<!-- All Websites Section -->
+<section id="work" class="section">
     <div class="container">
-        <div class="about-content">
-            <div class="about-image">
-                <div class="image-container">
-                    <img src="images/anesu-praise-web-developer.jpg" alt="Anesu Praise Wesite Developer">
-                    <div class="image-border">
-                        <div class="rotating-border"></div>
-                    </div>
-                    <div class="image-glow"></div>
+        <div class="section-header">
+            <h2 class="section-title">Client Websites</h2>
+            <p class="section-subtitle">A selection of recent web projects I've built and launched</p>
+        </div>
+        
+        <div class="websites-grid">
+            <!-- Website 1 -->
+            <div class="website-card">
+                <div class="website-icon">
+                    <i class="fas fa-chart-line"></i>
                 </div>
-                <div class="location-info">
-                    <div class="location-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 21C15.5 17.4 19 14.1764 19 10.2C19 6.22355 15.7764 3 12 3C8.22355 3 5 6.22355 5 10.2C5 14.1764 8.5 17.4 12 21Z" stroke="currentColor" stroke-width="2"/>
-                            <path d="M12 12C13.1046 12 14 11.1046 14 10C14 8.89543 13.1046 8 12 8C10.8954 8 10 8.89543 10 10C10 11.1046 10.8954 12 12 12Z" stroke="currentColor" stroke-width="2"/>
-                        </svg>
+                <div class="website-content">
+                    <h3 class="website-title">Pexus Advisory Services</h3>
+                    <p class="website-url">pexusadvisoryservices.co.za</p>
+                    <div class="website-tags">
+                        <span class="website-tag">Financial Services</span>
+                        <span class="website-tag">Corporate</span>
+                        <span class="website-tag">Responsive</span>
                     </div>
-                    <span class="location-text">Harare, Zimbabwe</span>
+                </div>
+                <a href="https://www.pexusadvisoryservices.co.za/" target="_blank" class="website-cta">
+                    Visit Site <i class="fas fa-external-link-alt"></i>
+                </a>
+                <div class="website-hover-effect"></div>
+            </div>
+            
+            <!-- Website 2 -->
+            <div class="website-card">
+                <div class="website-icon">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <div class="website-content">
+                    <h3 class="website-title">Goldbourne Finance</h3>
+                    <p class="website-url">goldbourne-finance.com</p>
+                    <div class="website-tags">
+                        <span class="website-tag">Finance</span>
+                        <span class="website-tag">Modern</span>
+                        <span class="website-tag">Mobile-First</span>
+                    </div>
+                </div>
+                <a href="https://goldbourne-finance.com/" target="_blank" class="website-cta">
+                    Visit Site <i class="fas fa-external-link-alt"></i>
+                </a>
+                <div class="website-hover-effect"></div>
+            </div>
+            
+            <!-- Website 3 -->
+            <div class="website-card">
+                <div class="website-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="website-content">
+                    <h3 class="website-title">Pegasus Investigations</h3>
+                    <p class="website-url">pegasus-investigations.com</p>
+                    <div class="website-tags">
+                        <span class="website-tag">Security</span>
+                        <span class="website-tag">Professional</span>
+                        <span class="website-tag">SEO Optimized</span>
+                    </div>
+                </div>
+                <a href="https://pegasus-investigations.com/" target="_blank" class="website-cta">
+                    Visit Site <i class="fas fa-external-link-alt"></i>
+                </a>
+                <div class="website-hover-effect"></div>
+            </div>
+        </div>
+        
+        <div class="websites-footer">
+            <a href="sites/" class="view-all-button">
+                <span>View All Websites</span>
+                <div class="button-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="button-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </a>
+            <p class="websites-note">Click "View All Websites" to explore my complete portfolio of web projects</p>
+        </div>
+    </div>
+</section>
+
+<!-- Contact & About Section -->
+<section id="contact" class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">Let's discuss your next web project</p>
+        </div>
+        
+        <div class="contact-about-grid">
+            <!-- Contact Form (Left on desktop, second on mobile) -->
+            <div class="contact-form-container">
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Your name">
+                        <div class="input-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="you@example.com">
+                        <div class="input-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number (Optional)</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+123 456 7890">
+                        <div class="input-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        
+                        <div class="phone-option" id="phoneOption">
+                            <label class="option-label">
+                                <input type="checkbox" name="receive_call" id="receive_call">
+                                <span class="checkmark"></span>
+                                <span class="option-text">I'm open to receiving a call about my inquiry</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="purpose">Purpose of Message *</label>
+                        <select id="purpose" name="purpose" required>
+                            <option value="" disabled selected>Select a purpose</option>
+                            <option value="sena">SENA Package ($30 - 1 page)</option>
+                            <option value="multi">Multi-Page Website ($45 - 2-4 pages)</option>
+                            <option value="extended">Extended Website ($60+ - 5+ pages)</option>
+                            <option value="dynamic">Dynamic Website ($200+ - Web app/E-commerce)</option>
+                            <option value="redesign">Website Redesign</option>
+                            <option value="seo">SEO Optimization</option>
+                            <option value="other">Other Inquiry</option>
+                        </select>
+                        <div class="input-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Project Details *</label>
+                        <textarea id="message" name="message" required placeholder="Tell me about your project, timeline, and any specific requirements..." rows="4"></textarea>
+                        <div class="input-icon textarea-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">
+                        <span>Send Message</span>
+                        <i class="fas fa-paper-plane"></i>
+                        <div class="submit-effect"></div>
+                    </button>
+                    
+                    <p class="form-note">* Required fields. I'll respond within 24 hours.</p>
+                </form>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>praiseirimayi8@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <p>For quick questions</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="about-text">
-                <div class="section-header">
-                    <h2 class="section-title">About Me</h2>
-                </div>
-                
-                <div class="about-description">
-                    <p>I'm a passionate frontend developer with an obsession for creating beautiful, functional digital experiences. Based in Harare, Zimbabwe, I bring a unique perspective to web development, combining technical expertise with creative design thinking.</p>
-                    
-                    <p>My journey in web development started with a curiosity about how digital interfaces work, and has evolved into a passion for building websites that not only look stunning but also provide seamless user experiences. I believe that great design should be accessible to everyone, and I'm committed to pushing the boundaries of what's possible on the web.</p>
-                
-                <div class="contact-info" id="contact">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M22 16.92V19.92C22 20.52 21.53 21 20.93 21H19.93C10.06 21 2 12.94 2 3.07V2.07C2 1.47 2.47 1 3.07 1H6.07C6.67 1 7.14 1.48 7.14 2.07C7.14 3.07 7.27 4.04 7.53 4.95C7.64 5.34 7.54 5.77 7.25 6.06L5.67 7.64C7.12 10.69 9.31 12.88 12.36 14.33L13.94 12.75C14.23 12.46 14.66 12.36 15.05 12.47C15.96 12.73 16.93 12.86 17.93 12.86C18.52 12.86 19 13.33 19 13.93V16.93C19 17.53 18.52 18 17.93 18H16.93" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                        <div class="contact-details">
-                            <span class="contact-label">Phone</span>
-                            <a href="tel:+263777610645" class="contact-value">+263 777 610 645</a>
+            
+            <!-- About Me (Right on desktop, first on mobile) -->
+            <div class="about-container">
+                <div class="about-card">
+                    <div class="about-image-container">
+                        <div class="image-frame">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Anesu Praise" class="about-image">
+                            <div class="image-overlay"></div>
+                            <div class="image-badge">
+                                <i class="fas fa-code"></i>
+                                <span>Web Designer & Developer</span>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                    <div class="about-content">
+                        <h3 class="about-title">About Me</h3>
+                        <p class="about-text">
+                            I'm Anesu Praise, a passionate web designer and developer specializing in creating modern, app-like web experiences. With expertise in responsive design, mobile optimization, and SEO, I build websites that not only look great but perform exceptionally across all devices.
+                        </p>
+                        <p class="about-text">
+                            My approach combines aesthetic design with functional precision, ensuring every project is optimized for search engines and user engagement from day one.
+                        </p>
+                        
+                        <div class="about-stats">
+                            <div class="stat">
+                                <span class="stat-number">50+</span>
+                                <span class="stat-label">Projects</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">100%</span>
+                                <span class="stat-label">Client Satisfaction</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">24h</span>
+                                <span class="stat-label">Response Time</span>
+                            </div>
                         </div>
-                        <div class="contact-details">
-                            <span class="contact-label">Email</span>
-                            <a href="mailto:praiseirimayi8@gmail.com" class="contact-value">praiseirimayi8@gmail.com</a>
+                        
+                        <div class="about-tags">
+                            <span class="about-tag">Responsive Design</span>
+                            <span class="about-tag">Mobile Optimization</span>
+                            <span class="about-tag">SEO</span>
+                            <span class="about-tag">Web Applications</span>
+                            <span class="about-tag">UI/UX</span>
                         </div>
                     </div>
-                </div>
-                
-                <div class="about-cta">
-                    <p>Let's create something amazing together</p>
-                    <a href="https://wa.me/263777610645?text=Hi%2C%20I%27m%20interested%20in%20your%20web%20design%20services!" class="btn btn-primary" style="text-decoration: none;">Get In Touch</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 
 <!-- Footer -->
 <footer class="footer">
     <div class="container">
         <div class="footer-content">
-            <div class="footer-info">
-                <div class="footer-logo">
-                    <div class="logo-image">
-                        <img src="images/anesu-praise-web-developer.jpg" alt="Anesu Praise Wesite Developer">
-                    </div>
-                    <span class="logo-text">Anesu Praise</span>
-                </div>
-                <p class="footer-tagline">Crafting digital experiences with passion and precision</p>
+            <div class="footer-left">
+                <p class="copyright">&copy; 2026 Anesu Praise. All rights reserved.</p>
+                <p class="footer-tagline">Web Designer & Developer</p>
             </div>
             
-            <div class="footer-social">
-                <a href="https://wa.me/263777610645" target="_blank" class="social-link" target="_blank" aria-label="WhatsApp">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893c0-3.18-1.24-6.171-3.495-8.428" fill="currentColor"/>
-    </svg>
-</a>
-                <a href="https://github.com/anesuirimayi" target="_blank" class="social-link" target="_blank" aria-label="GitHub">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 19C4 20.5 4 16.5 2 16M16 22V18.13C16.04 17.65 15.97 17.17 15.79 16.73C15.62 16.29 15.34 15.9 14.98 15.59C17.84 15.27 20.82 14.22 20.82 9.27C20.82 8.1 20.38 7 19.59 6.13C19.96 5.04 19.96 3.87 19.59 2.78C19.59 2.78 18.59 2.5 16 4.08C13.79 3.5 11.47 3.5 9.26 4.08C6.66 2.5 5.66 2.78 5.66 2.78C5.29 3.87 5.29 5.04 5.66 6.13C4.87 7 4.43 8.1 4.43 9.27C4.43 14.22 7.41 15.27 10.27 15.59C9.91 15.9 9.63 16.29 9.46 16.73C9.28 17.17 9.21 17.65 9.25 18.13V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-                <a href="mailto:praiseirimayi8@gmail.com" target="_blank" class="social-link" aria-label="Email">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-
-                <a href="https://x.com/anesu_praise_zw" target="_blank" class="social-link" aria-label="X.com Account">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" fill="currentColor"/>
-</svg>
-                </a>
-
+            <div class="footer-right">
+                <div class="social-links">
+                    <a href="https://wa.me/263777610645" target="_blank" class="social-link" aria-label="WhatsApp">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893c0-3.18-1.24-6.171-3.495-8.428" fill="currentColor"/>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/anesuirimayi" target="_blank" class="social-link" aria-label="GitHub">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 19C4 20.5 4 16.5 2 16M16 22V18.13C16.04 17.65 15.97 17.17 15.79 16.73C15.62 16.29 15.34 15.9 14.98 15.59C17.84 15.27 20.82 14.22 20.82 9.27C20.82 8.1 20.38 7 19.59 6.13C19.96 5.04 19.96 3.87 19.59 2.78C19.59 2.78 18.59 2.5 16 4.08C13.79 3.5 11.47 3.5 9.26 4.08C6.66 2.5 5.66 2.78 5.66 2.78C5.29 3.87 5.29 5.04 5.66 6.13C4.87 7 4.43 8.1 4.43 9.27C4.43 14.22 7.41 15.27 10.27 15.59C9.91 15.9 9.63 16.29 9.46 16.73C9.28 17.17 9.21 17.65 9.25 18.13V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+    
+    <!-- Add Facebook here -->
+    <a href="https://facebook.com/your-profile" target="_blank" class="social-link" aria-label="Facebook">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.099 4.388 23.094 10.125 24V15.563H7.078V12.073H10.125V9.413c0-3.1 1.84-4.815 4.659-4.815 1.349 0 2.761.242 2.761.242v3.062h-1.555c-1.533 0-2.012.954-2.012 1.932v2.34h3.445l-.551 3.49h-2.894V24C19.612 23.094 24 18.099 24 12.073z" fill="currentColor"/>
+        </svg>
+    </a>
+                    <a href="mailto:praiseirimayi8@gmail.com" class="social-link" aria-label="Email">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="https://x.com/anesu_praise_zw" target="_blank" class="social-link" aria-label="X.com Account">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" fill="currentColor"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
         </div>
         
         <div class="footer-bottom">
-            <div class="footer-copyright">
-                <p>&copy; 2025 Anesu Praise. </p>
-            </div>
-            <div class="footer-made">
-                <p>All rights reserved.</p>
-            </div>
+            <p class="footer-quote">Building modern web experiences that stand out.</p>
         </div>
     </div>
-</section>
+</footer>
 
 
-
-
-<!-- Chat - Bot Widget -->
-<div class="chat-bot-widget">
-    <!-- Chat Toggle Button -->
-    <div class="chat-toggle">
-        <div class="chat-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2Z" fill="currentColor"/>
-            </svg>
-        </div>
-        <div class="chat-notification"></div>
-    </div>
-
-    <!-- Chat Container -->
-    <div class="chat-container">
-        <div class="chat-header">
-            <div class="chat-avatar">
-                <img src="images/anesu-praise-web-developer.jpg" alt="Anesu Praise Wesite Developer">
-            </div>
-            <div class="chat-info">
-                <h3>Anesu Praise</h3>
-                <p>Frontend Developer</p>
-                <div class="status">
-                    <span class="status-dot"></span>
-                    <span>Online</span>
-                </div>
-            </div>
-            <button class="chat-close">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+<!-- Contact Modal -->
+<div class="modal-overlay" id="contactModal">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h3 class="modal-title">Start a Project</h3>
+            <button class="modal-close" id="closeModal">
+                <i class="fas fa-times"></i>
             </button>
         </div>
-
-        <div class="chat-messages">
-            <div class="message bot-message">
-                <div class="message-content">
-                    <p>Hey there! 👋 I'm Anesu's Assistant🤖. How can I help you today?</p>
-                    <span class="message-time">Just now</span>
+        
+        <div class="modal-body">
+            <p class="modal-subtitle">Tell me about your project and I'll get back to you within 24 hours.</p>
+            
+            <form class="modal-form" id="modalContactForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="modal-name">Full Name *</label>
+                        <input type="text" id="modal-name" name="name" required placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-email">Email Address *</label>
+                        <input type="email" id="modal-email" name="email" required placeholder="you@example.com">
+                    </div>
                 </div>
-            </div>
-
-            <div class="quick-questions">
-                <p>Quick questions you can ask:</p>
-                <div class="quick-buttons">
-                    <button class="quick-btn" data-question="pricing">💰 Pricing</button>
-                    <button class="quick-btn" data-question="services">🛠 Services</button>
-                    <button class="quick-btn" data-question="contact">📞 Contact</button>
-                    <button class="quick-btn" data-question="portfolio">🎨 Portfolio</button>
+                
+                <div class="form-group">
+                    <label for="modal-project">Project Type *</label>
+                    <select id="modal-project" name="project_type" required>
+                        <option value="" disabled selected>Select project type</option>
+                        <option value="sena">SENA Package ($30 - 1 page)</option>
+                        <option value="multi">Multi-Page Website ($45 - 2-4 pages)</option>
+                        <option value="extended">Extended Website ($60+ - 5+ pages)</option>
+                        <option value="dynamic">Dynamic Website ($200+ - Web app/E-commerce)</option>
+                        <option value="redesign">Website Redesign</option>
+                        <option value="seo">SEO Optimization</option>
+                        <option value="consultation">Consultation</option>
+                    </select>
                 </div>
-            </div>
-        </div>
-
-        <div class="chat-input-container">
-            <div class="chat-input">
-                <input type="text" placeholder="Type your message..." id="chat-input">
-                <button id="send-btn">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+                
+                <div class="form-group">
+                    <label for="modal-budget">Budget Range</label>
+                    <select id="modal-budget" name="budget">
+                        <option value="" selected>Select budget (optional)</option>
+                        <option value="under-50">Under $50</option>
+                        <option value="50-100">$50 - $100</option>
+                        <option value="100-200">$100 - $200</option>
+                        <option value="200-500">$200 - $500</option>
+                        <option value="500-plus">$500+</option>
+                        <option value="not-sure">Not sure yet</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="modal-message">Project Details *</label>
+                    <textarea id="modal-message" name="message" required placeholder="Briefly describe your project, goals, and timeline..." rows="4"></textarea>
+                </div>
+                
+                <div class="form-options">
+                    <label class="option-checkbox">
+                        <input type="checkbox" name="urgent" id="modal-urgent">
+                        <span class="checkbox-custom"></span>
+                        <span class="option-text">This is an urgent project</span>
+                    </label>
+                    
+                    <label class="option-checkbox">
+                        <input type="checkbox" name="newsletter" id="modal-newsletter" checked>
+                        <span class="checkbox-custom"></span>
+                        <span class="option-text">Receive web design tips & updates</span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="modal-submit-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Send Project Request</span>
+                    <div class="submit-loader">
+                        <div class="loader-dot"></div>
+                        <div class="loader-dot"></div>
+                        <div class="loader-dot"></div>
+                    </div>
                 </button>
-            </div>
+                
+                <p class="modal-note">By submitting, you agree to our <a href="#">Privacy Policy</a>. No spam, ever.</p>
+            </form>
+        </div>
+        
+        <div class="modal-footer">
+            <p class="modal-contact-alt">
+                <i class="fas fa-comment-alt"></i>
+                Prefer WhatsApp? <a href="https://wa.me/263777610645" target="_blank">Chat directly</a>
+            </p>
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
+    
     <script>
-        // Mobile Navigation Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const mobileNav = document.querySelector('.mobile-nav');
-
-        hamburger.addEventListener('click', () => {
-            mobileNav.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        });
-
-        // Close mobile nav when clicking on a link
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileNav.classList.remove('active');
-                hamburger.classList.remove('active');
+        // Navigation interaction
+        const navIcons = document.querySelectorAll('.nav-icon');
+        
+        navIcons.forEach(icon => {
+            icon.addEventListener('click', function() {
+                // Remove active class from all icons
+                navIcons.forEach(i => i.classList.remove('active'));
+                
+                // Add active class to clicked icon
+                this.classList.add('active');
+                
+                // Get the target section
+                const targetId = this.getAttribute('data-target');
+                const targetSection = document.getElementById(targetId);
+                
+                // Scroll to target section
+                if (targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // For WhatsApp, open chat
+                if (targetId === 'whatsapp') {
+                    window.open('https://wa.me/1234567890', '_blank');
+                }
             });
         });
-
-        // Settings Panel Toggle
-        const settingsToggle = document.querySelector('.settings-toggle');
-        const settingsPanel = document.querySelector('.settings-panel');
-
-        settingsToggle.addEventListener('click', () => {
-            settingsPanel.classList.toggle('active');
-        });
-
-        // Color Theme Switching
-        const colorOptions = document.querySelectorAll('.settings-option');
         
-        colorOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                const color = window.getComputedStyle(option).backgroundColor;
-                
-                // Extract RGB values
-                const rgb = color.match(/\d+/g);
-                const r = rgb[0];
-                const g = rgb[1];
-                const b = rgb[2];
-                
-                // Convert to hex
-                const hex = "#" + ((1 << 24) + (parseInt(r) << 16) + (parseInt(g) << 8) + parseInt(b)).toString(16).slice(1);
-                
-                // Update CSS variable
-                document.documentElement.style.setProperty('--accent-purple', hex);
-            });
-        });
-
-        // Add floating animation to code elements
-        const codeLines = document.querySelectorAll('.code-line');
-        codeLines.forEach((line, index) => {
-            line.style.animationDelay = `${index * 0.2}s`;
-            line.classList.add('fade-in');
-        });
-    </script>
-
-
-
-<script>
-    // Projects Video Hover Effect
-    document.addEventListener('DOMContentLoaded', function() {
-        const projectCards = document.querySelectorAll('.project-card');
-        
-        projectCards.forEach(card => {
-            const video = card.querySelector('video');
+        // Update active nav icon on scroll
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY + 100;
             
-            card.addEventListener('mouseenter', () => {
-                if (video) {
-                    video.currentTime = 0;
-                    video.play().catch(e => console.log('Video play failed:', e));
-                }
-            });
+            // Get all sections
+            const sections = document.querySelectorAll('section[id]');
             
-            card.addEventListener('mouseleave', () => {
-                if (video) {
-                    video.pause();
-                }
-            });
-        });
-        
-        // Skills Image Hover Effect
-        const skillItems = document.querySelectorAll('.skill-item');
-        const skillImage = document.getElementById('skill-img');
-        
-        // Skill images mapping
-        const skillImages = {
-            html: 'images/html.jpg',
-            css: 'images/css.jpeg',
-            javascript: 'images/javascript.jpg',
-            uiux: 'images/ux.jpg'
-        };
-        
-        skillItems.forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                const skill = this.getAttribute('data-skill');
-                if (skillImages[skill]) {
-                    // Add fade out effect
-                    skillImage.style.opacity = '0';
-                    
-                    setTimeout(() => {
-                        skillImage.src = skillImages[skill];
-                        skillImage.alt = skill.toUpperCase();
-                        skillImage.style.opacity = '1';
-                    }, 200);
-                }
-            });
-        });
-        
-        // Animate skill bars on scroll
-        const observerOptions = {
-            threshold: 0.5,
-            rootMargin: '0px 0px -100px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const progressBars = entry.target.querySelectorAll('.skill-progress');
-                    progressBars.forEach(bar => {
-                        const width = bar.style.width;
-                        bar.style.width = '0';
-                        setTimeout(() => {
-                            bar.style.width = width;
-                        }, 300);
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    navIcons.forEach(icon => {
+                        icon.classList.remove('active');
+                        if (icon.getAttribute('data-target') === sectionId) {
+                            icon.classList.add('active');
+                        }
                     });
                 }
             });
-        }, observerOptions);
+        });
         
-        const skillsSection = document.querySelector('.skills');
-        if (skillsSection) {
-            observer.observe(skillsSection);
-        }
-    });
-</script>
-
-
-
-<script>
-    // Add intersection observer for about section animations
-    document.addEventListener('DOMContentLoaded', function() {
-        const aboutSection = document.querySelector('.about');
+        // CTA Button interactions
+        const ctaButtons = document.querySelectorAll('.cta-button');
         
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Add any animations you want when about section comes into view
-                    const contactItems = entry.target.querySelectorAll('.contact-item');
-                    contactItems.forEach((item, index) => {
-                        item.style.opacity = '0';
-                        item.style.transform = 'translateX(-20px)';
-                        setTimeout(() => {
-                            item.style.transition = 'all 0.5s ease';
-                            item.style.opacity = '1';
-                            item.style.transform = 'translateX(0)';
-                        }, index * 200);
-                    });
+        ctaButtons.forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                const decoration = this.querySelector('.cta-decoration');
+                if (decoration) {
+                    decoration.style.top = `${Math.random() * 80 + 10}%`;
+                    decoration.style.left = `${Math.random() * 80 + 10}%`;
                 }
             });
-        }, { threshold: 0.3 });
+        });
         
-        if (aboutSection) {
-            observer.observe(aboutSection);
-        }
-    });
-</script>
-
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const chatToggle = document.querySelector('.chat-toggle');
-        const chatContainer = document.querySelector('.chat-container');
-        const chatClose = document.querySelector('.chat-close');
-        const chatInput = document.getElementById('chat-input');
-        const sendBtn = document.getElementById('send-btn');
-        const chatMessages = document.querySelector('.chat-messages');
-        const quickButtons = document.querySelectorAll('.quick-btn');
-
-        // Chat responses database
-        const responses = {
-            // Pricing related
-            'pricing': {
-                message: "Here's my pricing structure for web development services:\n\n" +
-                        "💻 <b>Static One-Page Website</b>: $30 - $60\n" +
-                        "🌐 <b>Multi-Page Website (2+ pages)</b>: $60+\n" +
-                        "🛒 <b>E-commerce Website</b>: $200+\n" +
-                        "🎨 <b>Custom Web Applications</b>: Custom quote based on requirements\n\n" +
-                        "All prices are in USD and may vary based on complexity and specific requirements. Would you like to discuss a specific project?",
-                keywords: ['price', 'pricing', 'cost', 'how much', 'budget', '$', 'usd']
-            },
+        // Parallax effect for collage images on scroll
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const collageImages = document.querySelectorAll('.collage-img');
             
-            // Services related
-            'services': {
-                message: "I specialize in frontend development with a focus on creating beautiful, responsive websites. Here's what I offer:\n\n" +
-                        "✨ **Custom Website Development</b>\n" +
-                        "📱 **Responsive Design</b>\n" +
-                        "🎯 **UI/UX Design</b>\n" +
-                        "⚡ **Performance Optimization\n" +
-                        "🔧 **Website Maintenance</b>\n\n" +
-                        "I'm also expanding into backend development and e-commerce solutions!",
-                keywords: ['service', 'services', 'what do you do', 'offer', 'build', 'create', 'develop']
-            },
-            
-            // Contact related
-            'contact': {
-                message: "You can reach me through:\n\n" +
-                        "📞 <b>Phone</b>: +263 777 610 645\n" +
-                        "📧 <b>Email</b>: praiseirimayi8@gmail.com\n" +
-                        "💬 <b>WhatsApp</b>: +263 777 610 645\n\n" +
-                        "I typically respond within a few hours. Feel free to call or message me anytime!",
-                keywords: ['contact', 'reach', 'phone', 'email', 'whatsapp', 'call', 'message', 'number']
-            },
-            
-            // Portfolio related
-            'portfolio': {
-                message: "You're already viewing my portfolio! 🎉\n\n" +
-                        "This website showcases my skills and projects. You can also check out:\n\n" +
-                        "• The <b>Projects</b> section above to see live websites I've built\n" +
-                        "• The <b>Skills</b> section to see my technical expertise\n" +
-                        "• The <b>About</b> section to learn more about me\n\n" +
-                        "Would you like to see specific types of projects?",
-                keywords: ['portfolio', 'work', 'projects', 'examples', 'showcase', 'previous work']
-            },
-            
-            // Greeting related
-            'greeting': {
-                message: "Hello! 👋 Thanks for reaching out. I'm Anesu, a frontend developer passionate about creating amazing web experiences. How can I help you today?",
-                keywords: ['hello', 'hi', 'hey', 'good morning', 'good afternoon', 'good evening', 'howdy']
-            },
-            
-            // Availability related
-            'availability': {
-                message: "I'm currently available for new projects! 🚀\n\n" +
-                        "My typical project timeline is 1-3 weeks depending on complexity. I'm based in Harare, Zimbabwe but work with clients worldwide.\n\n" +
-                        "Ready to start your project?",
-                keywords: ['available', 'availability', 'timeline', 'schedule', 'when', 'start', 'busy']
-            },
-            
-            // Experience related
-            'experience': {
-                message: "I have experience working with modern web technologies:\n\n" +
-                        "<b>Frontend</b>: HTML5, CSS3, JavaScript, React\n" +
-                        "<b>Styling</b>: CSS Grid, Flexbox, Animations, Responsive Design\n" +
-                        "<b>Tools</b>: Git, VS Code, Figma, Photoshop\n" +
-                        "<b>Learning</b>: Node.js, Express, MongoDB (Backend)\n\n" +
-                        "I'm constantly learning and expanding my skill set!",
-                keywords: ['experience', 'skills', 'technologies', 'tech stack', 'what can you do', 'expertise']
-            },
-            
-            // E-commerce related
-            'ecommerce': {
-                message: "I'm currently developing my e-commerce development skills! 🛒\n\n" +
-                        "For e-commerce projects starting at $200+, I can build:\n\n" +
-                        "• Product catalogs & categories\n" +
-                        "• Shopping cart functionality\n" +
-                        "• Payment integration\n" +
-                        "• User accounts & order management\n\n" +
-                        "These are more complex projects with longer timelines.",
-                keywords: ['ecommerce', 'e-commerce', 'shop', 'store', 'products', 'selling online']
-            }
-        };
-
-        // Default response for unknown queries
-        const defaultResponse = "I'm not sure I understand that question. 🤔\n\n" +
-                               "You can ask me about:\n" +
-                               "• 💰 <b>Pricing</b> and project costs\n" +
-                               "• 🛠 <b>Services</b> I offer\n" +
-                               "• 📞 <b>Contact</b> information\n" +
-                               "• 🎨 <b>Portfolio</b> and previous work\n\n" +
-                               "For specific questions, feel free to contact me directly:\n" +
-                               "📞 <b>Phone</b>: +263 777 610 645\n" +
-                               "📧 <b>Email</b>: praiseirimayi8@gmail.com";
-
-        // Toggle chat visibility
-        chatToggle.addEventListener('click', () => {
-            chatContainer.classList.toggle('active');
-            chatInput.focus();
-        });
-
-        chatClose.addEventListener('click', () => {
-            chatContainer.classList.remove('active');
-        });
-
-        // Send message function
-        function sendMessage() {
-            const message = chatInput.value.trim();
-            if (!message) return;
-
-            // Add user message
-            addMessage(message, 'user');
-            chatInput.value = '';
-
-            // Show typing indicator
-            showTypingIndicator();
-
-            // Generate and show bot response after delay
-            setTimeout(() => {
-                hideTypingIndicator();
-                const response = generateResponse(message);
-                addMessage(response, 'bot');
-            }, 1500);
-        }
-
-        // Add message to chat
-        function addMessage(text, sender) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${sender}-message`;
-            
-            const time = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-            
-            messageDiv.innerHTML = `
-                <div class="message-content">
-                    <p>${text.replace(/\n/g, '<br>')}</p>
-                    <span class="message-time">${time}</span>
-                </div>
-            `;
-
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        // Generate bot response
-        function generateResponse(userMessage) {
-            const lowerMessage = userMessage.toLowerCase();
-            
-            // Check for matching responses
-            for (const [key, response] of Object.entries(responses)) {
-                if (response.keywords.some(keyword => lowerMessage.includes(keyword))) {
-                    return response.message;
-                }
-            }
-            
-            // Check for thank you messages
-            if (lowerMessage.includes('thank') || lowerMessage.includes('thanks')) {
-                return "You're welcome! 😊 Is there anything else I can help you with?";
-            }
-            
-            // Check for goodbye messages
-            if (lowerMessage.includes('bye') || lowerMessage.includes('goodbye') || lowerMessage.includes('see you')) {
-                return "Thanks for chatting! Feel free to reach out anytime. Have a great day! 👋";
-            }
-            
-            // Default response
-            return defaultResponse;
-        }
-
-        // Typing indicator functions
-        function showTypingIndicator() {
-            let typingIndicator = document.querySelector('.typing-indicator');
-            if (!typingIndicator) {
-                typingIndicator = document.createElement('div');
-                typingIndicator.className = 'typing-indicator message bot-message';
-                typingIndicator.innerHTML = `
-                    <div class="message-avatar">
-                        <img src="images/ap.jpg" alt="Anesu Praise">
-                    </div>
-                    <div class="message-content">
-                        <div class="typing-dots">
-                            <div class="typing-dot"></div>
-                            <div class="typing-dot"></div>
-                            <div class="typing-dot"></div>
-                        </div>
-                    </div>
-                `;
-                chatMessages.appendChild(typingIndicator);
-            }
-            typingIndicator.classList.add('active');
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function hideTypingIndicator() {
-            const typingIndicator = document.querySelector('.typing-indicator');
-            if (typingIndicator) {
-                typingIndicator.remove();
-            }
-        }
-
-        // Event listeners
-        sendBtn.addEventListener('click', sendMessage);
-
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-
-        // Quick button functionality
-        quickButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const question = button.getAttribute('data-question');
-                const response = responses[question]?.message || defaultResponse;
-                
-                // Add quick question as user message
-                addMessage(button.textContent, 'user');
-                
-                // Show typing indicator
-                showTypingIndicator();
-                
-                // Show response after delay
-                setTimeout(() => {
-                    hideTypingIndicator();
-                    addMessage(response, 'bot');
-                }, 1000);
+            collageImages.forEach((img, index) => {
+                const speed = 0.05 * (index + 1);
+                const yPos = -(scrolled * speed);
+                img.style.transform = `translateY(${yPos}px) scale(${1 + speed * 0.5})`;
             });
         });
 
-        // Auto-open chat after 5 seconds
+// Contact Form Submission
+const contactForm = document.getElementById('contactForm');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Basic form validation
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const purpose = document.getElementById('purpose').value;
+        const message = document.getElementById('message').value.trim();
+        
+        if (!name || !email || !purpose || !message) {
+            alert('Please fill in all required fields.');
+            return;
+        }
+        
+        // Get form data
+        const phone = document.getElementById('phone').value.trim();
+        const receiveCall = document.getElementById('receive_call').checked;
+        
+        // Prepare email body
+        const subject = `New Contact from ${name} - ${purpose}`;
+        const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0APhone: ${phone || 'Not provided'}%0D%0AOpen to call: ${receiveCall ? 'Yes' : 'No'}%0D%0APurpose: ${purpose}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+        
+        // Create mailto link
+        const mailtoLink = `mailto:praiseirimayi8@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        
+        // Open email client
+        window.open(mailtoLink, '_blank');
+        
+        // Show success message
+        alert('Thank you! Your email client will open with a pre-filled message. Please send it to contact me.');
+        
+        // Reset form
+        contactForm.reset();
+    });
+}
+
+// Show phone option when phone field is filled
+const phoneInput = document.getElementById('phone');
+const phoneOption = document.getElementById('phoneOption');
+
+if (phoneInput && phoneOption) {
+    phoneInput.addEventListener('input', function() {
+        if (this.value.trim()) {
+            phoneOption.style.display = 'block';
+        } else {
+            phoneOption.style.display = 'none';
+            document.getElementById('receive_call').checked = false;
+        }
+    });
+    
+    // Initially hide if empty
+    if (!phoneInput.value.trim()) {
+        phoneOption.style.display = 'none';
+    }
+}
+
+
+// Footer social link interaction
+const socialLinks = document.querySelectorAll('.social-link');
+
+socialLinks.forEach(link => {
+    link.addEventListener('mouseenter', function() {
+        this.style.animation = 'none';
+    });
+    
+    link.addEventListener('mouseleave', function() {
+        this.style.animation = 'float-gentle 4s ease-in-out infinite';
+    });
+});
+
+// Add current year to copyright
+const copyrightElement = document.querySelector('.copyright');
+if (copyrightElement) {
+    const currentYear = new Date().getFullYear();
+    copyrightElement.innerHTML = `&copy; ${currentYear} Anesu Praise. All rights reserved.`;
+}
+
+
+// Contact Modal Functionality
+const contactModal = document.getElementById('contactModal');
+const startProjectBtn = document.querySelector('.cta-primary');
+const closeModalBtn = document.getElementById('closeModal');
+const modalContactForm = document.getElementById('modalContactForm');
+const modalSubmitBtn = modalContactForm ? modalContactForm.querySelector('.modal-submit-btn') : null;
+
+// Open modal when Start Project button is clicked
+if (startProjectBtn) {
+    startProjectBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        contactModal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    });
+}
+
+// Close modal when close button is clicked
+if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', function() {
+        contactModal.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+    });
+}
+
+// Close modal when clicking outside
+contactModal.addEventListener('click', function(e) {
+    if (e.target === contactModal) {
+        contactModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && contactModal.classList.contains('active')) {
+        contactModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+
+// Modal form submission
+if (modalContactForm) {
+    modalContactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Show loading state
+        modalSubmitBtn.classList.add('loading');
+        
+        // Get form data
+        const formData = new FormData(modalContactForm);
+        const data = Object.fromEntries(formData);
+        
+        // Simulate form submission (replace with actual submission)
         setTimeout(() => {
-            if (!chatContainer.classList.contains('active')) {
-                chatToggle.click();
-            }
-        }, 7000);
+            // Create email body
+            const subject = `New Project Request: ${data.project_type}`;
+            const body = `Name: ${data.name}%0D%0AEmail: ${data.email}%0D%0AProject Type: ${data.project_type}%0D%0ABudget: ${data.budget || 'Not specified'}%0D%0AUrgent: ${data.urgent ? 'Yes' : 'No'}%0D%0A%0D%0AMessage:%0D%0A${data.message}`;
+            
+            // Create mailto link
+            const mailtoLink = `mailto:praiseirimayi8@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            // Reset button state
+            modalSubmitBtn.classList.remove('loading');
+            
+            // Open email client
+            window.open(mailtoLink, '_blank');
+            
+            // Show success message
+            showModalSuccess();
+            
+            // Reset form
+            modalContactForm.reset();
+            
+            // Close modal after delay
+            setTimeout(() => {
+                contactModal.classList.remove('active');
+                document.body.style.overflow = '';
+                hideModalSuccess();
+            }, 3000);
+            
+        }, 1500); // Simulated delay
     });
-</script>
+}
 
+// Show success message in modal
+function showModalSuccess() {
+    const modalBody = document.querySelector('.modal-body');
+    const modalForm = document.querySelector('.modal-form');
+    
+    // Create success message if it doesn't exist
+    if (!document.querySelector('.modal-success')) {
+        const successHTML = `
+            <div class="modal-success">
+                <i class="fas fa-check-circle"></i>
+                <h4>Request Sent!</h4>
+                <p>Thank you for your project request. I've opened your email client with a pre-filled message. Please send it to officially submit your request.</p>
+                <p>I'll get back to you within 24 hours.</p>
+                <button class="success-btn" id="closeSuccess">Close</button>
+            </div>
+        `;
+        
+        modalBody.insertAdjacentHTML('beforeend', successHTML);
+        modalForm.style.display = 'none';
+        document.querySelector('.modal-success').style.display = 'block';
+        
+        // Add event listener to close button
+        document.getElementById('closeSuccess').addEventListener('click', function() {
+            hideModalSuccess();
+            contactModal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    }
+}
+
+// Hide success message
+function hideModalSuccess() {
+    const modalForm = document.querySelector('.modal-form');
+    const modalSuccess = document.querySelector('.modal-success');
+    
+    if (modalSuccess) {
+        modalSuccess.remove();
+    }
+    
+    if (modalForm) {
+        modalForm.style.display = 'block';
+    }
+}
+
+// Also open modal when clicking "Discuss Project" in pricing
+const discussProjectBtns = document.querySelectorAll('.pricing-cta');
+discussProjectBtns.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        contactModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Auto-select the corresponding project type
+        const pricingCard = this.closest('.pricing-card');
+        if (pricingCard) {
+            const projectSelect = document.getElementById('modal-project');
+            if (pricingCard.classList.contains('basic')) {
+                projectSelect.value = 'sena';
+            } else if (pricingCard.classList.contains('dynamic')) {
+                projectSelect.value = 'dynamic';
+            }
+        }
+    });
+});
+    </script>
 </body>
 </html>
